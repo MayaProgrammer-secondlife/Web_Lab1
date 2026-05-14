@@ -4,7 +4,6 @@
   const THEME_KEY = "atelier_theme";
   const DRAFT_KEY = "atelier_draft";
 
-  // ===== THEME MANAGEMENT =====
   function setTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
     try {
@@ -37,7 +36,6 @@
     });
   }
 
-  // ===== NAVIGATION ACTIVE STATE =====
   function setNavCurrent() {
     const path = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".nav a").forEach(function (link) {
@@ -48,13 +46,11 @@
     });
   }
 
-  // ===== SAFE TEXT OUTPUT =====
   function safeSetText(el, text) {
     if (!el) return;
     el.textContent = text == null ? "" : String(text);
   }
 
-  // ===== DRAFT FORM =====
   function loadDraftForm() {
     const titleEl = document.getElementById("draft-title");
     const bodyEl = document.getElementById("draft-body");
@@ -105,7 +101,6 @@
         localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
         safeSetText(statusEl, "✓ Черновик сохранён локально.");
         
-        // Визуальный эффект успеха
         statusEl.style.color = "var(--success)";
         setTimeout(() => {
           statusEl.style.color = "";
@@ -118,7 +113,6 @@
     loadDraftForm();
   }
 
-  // ===== INIT =====
   document.addEventListener("DOMContentLoaded", function () {
     loadTheme();
     wireThemeToggle();
